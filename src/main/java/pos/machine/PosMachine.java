@@ -17,7 +17,7 @@ public class PosMachine {
     private Receipt calculateReceipt (List<ItemInfo> itemWithDetail) {
         Map<String, ReceiptItem> receiptItems = calculateReceiptItems(itemWithDetail);
         int totalPrice = calculateTotalPrice(receiptItems);
-        return new Receipt(receiptItems, totalPrice);
+        return new Receipt(receiptItems, totalPrice)
     }
 
     private String renderReceipt (Receipt receipt) {
