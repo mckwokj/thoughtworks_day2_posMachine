@@ -11,13 +11,25 @@ public class PosMachine {
     }
 
     private List<ItemInfo> getItemInfos (List<String> barcodes) {
+        List<ItemInfo> allItemInfos = ItemDataLoader.loadAllItemInfos();
+        List<ItemInfo> itemInfos = new ArrayList<>();
 
+        for (String barcode: barcodes) {
+            for (ItemInfo itemInfo: allItemInfos) {
+                System.out.println(itemInfo);
+                if (itemInfo.getBarcode().equals(barcode)) {
+                    itemInfos.add(itemInfo);
+                }
+            }
+        }
+
+        return itemInfos;
     }
 
     private Receipt calculateReceipt (List<ItemInfo> itemWithDetail) {
         Map<String, ReceiptItem> receiptItems = calculateReceiptItems(itemWithDetail);
         int totalPrice = calculateTotalPrice(receiptItems);
-        return new Receipt(receiptItems, totalPrice)
+        return new Receipt(receiptItems, totalPrice);
     }
 
     private String renderReceipt (Receipt receipt) {
