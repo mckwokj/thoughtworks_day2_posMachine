@@ -34,6 +34,20 @@ public class PosMachine {
 
     private Map<String, ReceiptItem> calculateReceiptItems(List<ItemInfo> itemWithDetail) {
 
+        Map<String, ReceiptItem> receiptItems = new HashMap<>();
+
+        for (ItemInfo item: itemWithDetail) {
+            if (!receiptItems.containsKey(item.getName())) {
+                receiptItems.put(item.getName(), new ReceiptItem(item.getName(), 1, item.getPrice(), item.getPrice()));
+            } else {
+                int oldQuantity = receiptItems.get(item.getName()).getQuantity();
+                int oldSubTotal = receiptItems.get(item.getName()).getSubTotal();
+                receiptItems.remove(item.getName());
+                receiptItems.put(item.getName(), new ReceiptItem(item.getName(), oldQuantity+1, item.getPrice(), oldSubTotal+item.getPrice()));
+            }
+        }
+
+        return receiptItems;
     }
 
     public static void main(String[] args) {
