@@ -33,7 +33,9 @@ public class PosMachine {
     }
 
     private String renderReceipt (Receipt receipt) {
-
+        String receiptContent = "";
+        receiptContent += "***<store earning no money>Receipt***\n" + receipt + "----------------------\n" + "Total: " + receipt.getTotalPrice() + " (yuan)\n**********************";
+        return receiptContent;
     }
 
     private int calculateTotalPrice(Map<String, ReceiptItem> receiptItems) {
