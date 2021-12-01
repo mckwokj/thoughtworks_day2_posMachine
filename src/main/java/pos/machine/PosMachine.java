@@ -18,7 +18,6 @@ public class PosMachine {
 
         for (String barcode: barcodes) {
             for (ItemInfo itemInfo: allItemInfos) {
-                System.out.println(itemInfo);
                 if (itemInfo.getBarcode().equals(barcode)) {
                     itemInfos.add(itemInfo);
                 }
@@ -44,7 +43,7 @@ public class PosMachine {
         int totalPrice = 0;
 
         for (String receiptItemName: receiptItems.keySet()) {
-            totalPrice += receiptItems.get(receiptItemName) .getSubTotal();
+            totalPrice += receiptItems.get(receiptItemName).getSubTotal();
         }
 
         return totalPrice;
